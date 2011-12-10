@@ -30,6 +30,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails', :group => :development
 gem 'simple_form'
+gem "therubyracer", "~> 0.9.9"
 
 group :test do
   gem 'database_cleaner'
