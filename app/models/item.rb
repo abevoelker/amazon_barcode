@@ -5,7 +5,17 @@ require 'barby/barcode/code_39'
 require 'barby/outputter/png_outputter'
 
 class Item < ActiveRecord::Base
-  def create(asin)
+  attr_accessible :asin, :barcode
+  attr_reader :upc
+  before_create :fetch_upc
+
+  def barcode
+    @barcode ||= get_barcode
+  end
+
+  private
+
+  def fetch_upc
     req = AmazonProduct["us"]
     req.configure do |c|
       c.key    = AMAZON_KEY
@@ -15,12 +25,6 @@ class Item < ActiveRecord::Base
     res = req.find(asin, :response_group => 'Medium')
     @upc = res.to_hash['Items']['Item']['ItemAttributes']['UPC']
   end
-
-  def barcode
-    @barcode ||= get_barcode
-  end
-
-  private
 
   def get_barcode
     Barby::Code39.new(@upc).to_png
