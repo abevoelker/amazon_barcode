@@ -15,4 +15,4 @@
 /tmp
 
 # Ignore Amazon credentials
-/credentials.yml
+/config/credentials.yml
