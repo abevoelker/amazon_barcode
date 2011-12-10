@@ -24,11 +24,21 @@ gem 'jquery-rails'
 # Use unicorn as the web server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+gem 'haml'
+gem 'haml-rails', :group => :development
+gem 'simple_form'
+
+group :test do
+  gem 'database_cleaner'
+  gem 'rails3-generators' #mainly for factory_girl & simple_form at this point
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'cucumber-rails'
+  gem 'capybara'
+end
 
 gem "amazon_product", "~> 3.0.1"
 gem "barby", "~> 0.5.0"
