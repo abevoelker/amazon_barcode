@@ -58,5 +58,9 @@ module AmazonBarcode
       g.form_builder :simple_form
       g.template_engine :haml
     end
+
+    # Autoload lib/ directory (turned off by default in Rails 3)
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
 end
